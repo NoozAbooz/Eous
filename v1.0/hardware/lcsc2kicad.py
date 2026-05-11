@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import sys
 
-def run_easyeda2kicad_from_file(input_file, output_dir="./lib/lcsc", python_exec=None):
+def run_easyeda2kicad_from_file(input_file, output_dir, python_exec=None):
     # Fix 1: Default to the current Python interpreter if none provided
     if python_exec is None:
         python_exec = sys.executable
@@ -38,6 +38,8 @@ def run_easyeda2kicad_from_file(input_file, output_dir="./lib/lcsc", python_exec
             "--full",
             f"--lcsc_id={lcsc_id}",
             f"--output={output_dir}",
+            f"--project-relative",
+            f"--overwrite",
         ]
         
         print(f"[{idx}/{len(lines)}] Running: {' '.join(cmd)}")
